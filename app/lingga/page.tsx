@@ -19,45 +19,24 @@ type ArtifactCard = {
   bgImage: string;
 };
 
-const OTHERS_CARDS: ArtifactCard[] = [
+const LINGGA_CARDS: ArtifactCard[] = [
   {
-    id: "jaladwara",
+    id: "prasasti",
     number: "01",
-    title: "Jaladwara",
-    href: "/others/jaladwara",
-    bgImage: "/images/others/jaladwara.png",
+    title: "Prasasti",
+    href: "/lingga/prasasti",
+    bgImage: "/images/lingga/prasasti.png",
   },
   {
-    id: "landasan-garuda",
+    id: "linggaa",
     number: "02",
-    title: "Landasan Garuda",
-    href: "/others/landasan-garuda",
-    bgImage: "/images/others/landasan-garuda.png",
-  },
-  {
-    id: "antefik-1",
-    number: "03",
-    title: "Antefik 1",
-    href: "/others/antefik-1",
-    bgImage: "/images/others/antefik-1.png",
-  },
-  {
-    id: "antefik-2",
-    number: "04",
-    title: "Antefik 2",
-    href: "/others/antefik-2",
-    bgImage: "/images/others/antefik-2.png",
-  },
-  {
-    id: "lingga-yoni",
-    number: "05",
-    title: "Lingga Yoni",
-    href: "/others/lingga-yoni",
-    bgImage: "/images/others/lingga-yoni.png",
+    title: "Lingga",
+    href: "/lingga/linggaa",
+    bgImage: "/images/lingga/linggaa.png",
   },
 ];
 
-export default function OthersPage() {
+export default function LinggaPage() {
   const [isLoaded, setIsLoaded] = useState(true);
   const { t } = useLanguage();
 
@@ -122,7 +101,7 @@ export default function OthersPage() {
           {/* Header */}
           <div className="mb-6 md:mb-10 text-center md:text-left">
             <h1 className="text-3xl sm:text-4xl font-extrabold md:text-6xl text-black drop-shadow-sm">
-              {t.nav?.others || "Others"}
+              {t.nav?.lingga || "Lingga"}
             </h1>
           </div>
 
@@ -131,7 +110,7 @@ export default function OthersPage() {
             ref={scrollContainerRef}
             className="flex flex-col md:flex-row gap-4 sm:gap-6 md:overflow-x-auto pb-8 pt-2 scrollbar-none"
           >
-            {OTHERS_CARDS.map((card) => (
+            {LINGGA_CARDS.map((card) => (
               <Link
                 key={card.id}
                 href={card.href}

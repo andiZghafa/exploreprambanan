@@ -66,7 +66,7 @@ export default function Navbar() {
           <img
             src="/logo-injourney.png"
             alt="Injourney Destinations"
-            className="h-10 w-auto md:h-12"
+            className="h-5 w-auto md:h-6"
           />
         </Link>
 
@@ -158,13 +158,13 @@ export default function Navbar() {
             </div>
           )}
 
-          <nav className="mt-10 flex flex-col gap-6">
+          <nav className="mt-8 flex flex-col gap-3">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-4xl font-extrabold tracking-tight text-neutral-900 transition-colors hover:text-neutral-500"
+                className="text-lg font-semibold leading-tight text-neutral-800 transition-colors hover:text-neutral-500"
               >
                 {link.label}
               </Link>

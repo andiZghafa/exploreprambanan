@@ -19,17 +19,16 @@ export default function ValleyGodsPage() {
             ← Back to Literacy
           </Link>
 
-          <div className="flex justify-center">
+          <h1 className="mt-8 text-4xl font-extrabold text-black">
+            Valley of the Gods
+          </h1>
+          <div className="mt-8 flex justify-center">
             <img
               src="/images/literacy/valley-gods.jpg"
               alt="Valley of the Gods"
               className="max-h-[80vh] w-auto max-w-full object-contain"
             />
           </div>
-
-          <h1 className="mt-8 text-4xl font-extrabold text-black">
-            Valley of the Gods
-          </h1>
         </div>
       </section>
     </main>

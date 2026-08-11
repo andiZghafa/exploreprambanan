@@ -19,20 +19,18 @@ export default function ShivaTandawaPage() {
           >
             ← Back to Literacy
           </Link>
-
-          {/* Image */}
-          <div className="flex justify-center">
-            <img
-              src="/images/literacy/shiva-tandawa.jpg"
-              alt="Shiva Tandawa"
-              className="max-h-[80vh] w-auto max-w-full object-contain"
-            />
-          </div>
-
           {/* Title */}
           <h1 className="mt-8 text-4xl font-extrabold text-black">
             Shiva Tandawa
           </h1>
+          {/* Image */}
+          <div className="mt-8 flex justify-center">
+            <img
+              src="/images/literacy/Shiva-Tandawa.jpg"
+              alt="Shiva Tandawa"
+              className="max-h-[80vh] w-auto max-w-full object-contain"
+            />
+          </div>
         </div>
       </section>
     </main>

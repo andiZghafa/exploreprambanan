@@ -19,17 +19,17 @@ export default function TemplesPage() {
             ← Back to Literacy
           </Link>
 
-          <div className="flex justify-center">
+          <h1 className="mt-8 text-4xl font-extrabold text-black">
+            Lumbung, Bubrah & Gana Temple
+          </h1>
+
+          <div className="mt-8 flex justify-center">
             <img
               src="/images/literacy/temples.jpg"
               alt="Temples"
               className="max-h-[80vh] w-auto max-w-full object-contain"
             />
           </div>
-
-          <h1 className="mt-8 text-4xl font-extrabold text-black">
-            Lumbung, Bubrah & Gana Temple
-          </h1>
         </div>
       </section>
     </main>

@@ -19,18 +19,16 @@ export default function SewuPage() {
           >
             ← Back to Literacy
           </Link>
-
+          {/* Title */}
+          <h1 className="mt-8 text-4xl font-extrabold text-black">Sewu</h1>
           {/* Image */}
-          <div className="flex justify-center">
+          <div className="mt-8 flex justify-center">
             <img
               src="/images/literacy/sewu.jpg"
               alt="Sewu"
               className="max-h-[80vh] w-auto max-w-full object-contain"
             />
           </div>
-
-          {/* Title */}
-          <h1 className="mt-8 text-4xl font-extrabold text-black">Sewu</h1>
         </div>
       </section>
     </main>

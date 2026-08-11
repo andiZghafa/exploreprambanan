@@ -61,7 +61,7 @@ export default function Home() {
             {t.home.discoverPrambanan}
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-white/90 drop-shadow md:text-2xl">
+          <p className="mt-6 max-w-2xl text-lg text-white/90 drop-shadow md:text-2xl text-balance">
             {t.home.subtitle}
           </p>
 
@@ -74,6 +74,11 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+      <footer className="bg-[#9fbb3c] border-t border-white/10 px-6 py-2 text-center text-sm text-white">
+        PT Taman Wisata Candi Borobudur, Prambanan dan Ratu Boko (Persero) ©
+        2026. All Rights Reserved.
+      </footer>
     </main>
   );
 }
