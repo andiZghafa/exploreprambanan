@@ -29,7 +29,14 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <div className="flex-1">{children}</div>
+
+          <footer className="bg-[#9fbb3c] border-t border-white/10 px-6 py-2 text-center text-sm text-white">
+            PT Taman Wisata Candi Borobudur, Prambanan dan Ratu Boko (Persero) ©
+            2026. All Rights Reserved.
+          </footer>
+        </LanguageProvider>
       </body>
     </html>
   );
