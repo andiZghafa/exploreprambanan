@@ -143,7 +143,7 @@ export default function LiteracyPage() {
               <Link
                 key={card.id}
                 href={card.href}
-                className="group relative w-full md:w-[420px] h-[220px] sm:h-[260px] flex-shrink-0 rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-2xl flex overflow-hidden p-5 sm:p-6"
+                className="group relative w-full md:w-[450px] lg:w-[500px] h-[220px] sm:h-[260px] md:h-[300px] flex-shrink-0 snap-start rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 flex overflow-hidden p-5 sm:p-6"
               >
                 {/* Left Side: Title & Large Number */}
                 <div className="flex flex-1 flex-col justify-between pr-2 sm:pr-4 z-10">

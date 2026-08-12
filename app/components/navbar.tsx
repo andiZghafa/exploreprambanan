@@ -48,7 +48,11 @@ const SEARCH_ITEMS: SearchItem[] = [
   { label: "Dewa", href: "/arca/dewa", category: "Arca" },
   { label: "Dewi Kaumari", href: "/arca/dewi-kaumari", category: "Arca" },
   { label: "Dewi Tara", href: "/arca/dewi-tara", category: "Arca" },
-  { label: "Dhayani Buddha Ratnasambhaw", href: "/arca/dhyani-1", category: "Arca" },
+  {
+    label: "Dhayani Buddha Ratnasambhaw",
+    href: "/arca/dhyani-1",
+    category: "Arca",
+  },
   { label: "Dhayani Budha Amitabh", href: "/arca/dhyani-2", category: "Arca" },
   { label: "Durga Mahisasuramardhini", href: "/arca/durga", category: "Arca" },
   { label: "Ganesha", href: "/arca/ganesha", category: "Arca" },
@@ -66,15 +70,31 @@ const SEARCH_ITEMS: SearchItem[] = [
   { label: "Prasasti", href: "/lingga/prasasti", category: "Lingga" },
   { label: "Linggaa", href: "/lingga/linggaa", category: "Lingga" },
   { label: "Literacy", href: "/literacy", category: "Collection" },
-  { label: "Shiva Tandawa", href: "/literacy/shiva-tandawa", category: "Literacy" },
-  { label: "Valley of the Gods", href: "/literacy/valley-gods", category: "Literacy" },
+  {
+    label: "Shiva Tandawa",
+    href: "/literacy/shiva-tandawa",
+    category: "Literacy",
+  },
+  {
+    label: "Valley of the Gods",
+    href: "/literacy/valley-gods",
+    category: "Literacy",
+  },
   { label: "Siwagrha", href: "/literacy/siwagrha", category: "Literacy" },
   { label: "Prambanan", href: "/literacy/prambanan", category: "Literacy" },
   { label: "Sewu", href: "/literacy/sewu", category: "Literacy" },
-  { label: "Lumbung, Bubrah & Gana Temple", href: "/literacy/temples", category: "Literacy" },
+  {
+    label: "Lumbung, Bubrah & Gana Temple",
+    href: "/literacy/temples",
+    category: "Literacy",
+  },
   { label: "Others", href: "/others", category: "Collection" },
   { label: "Jaladwara", href: "/others/jaladwara", category: "Others" },
-  { label: "Landasan Garuda", href: "/others/landasan-garuda", category: "Others" },
+  {
+    label: "Landasan Garuda",
+    href: "/others/landasan-garuda",
+    category: "Others",
+  },
   { label: "Antefik 1", href: "/others/antefik-1", category: "Others" },
   { label: "Antefik 2", href: "/others/antefik-2", category: "Others" },
 ];
@@ -257,7 +277,9 @@ export default function Navbar() {
                       onClick={() => navigateToSearchResult(item.href)}
                       className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left transition-colors hover:bg-neutral-100"
                     >
-                      <span className="text-sm font-medium text-neutral-800">{item.label}</span>
+                      <span className="text-sm font-medium text-neutral-800">
+                        {item.label}
+                      </span>
                       <span className="text-[10px] uppercase tracking-[0.12em] text-neutral-500">
                         {item.category}
                       </span>
@@ -314,4 +336,3 @@ export default function Navbar() {
     </header>
   );
 }
-

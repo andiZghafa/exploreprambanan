@@ -39,7 +39,7 @@ export default function PrasastiPage() {
         {/* Background Texture Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/explore-bg3s.png"
+            src="/explore-bg3.png"
             alt="Background texture"
             className="h-full w-full object-cover object-center"
           />

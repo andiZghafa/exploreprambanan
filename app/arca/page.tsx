@@ -225,7 +225,7 @@ export default function ArcaPage() {
               <Link
                 key={card.id}
                 href={`/arca/${card.id}`}
-                className="group relative w-full md:w-[420px] h-[220px] sm:h-[260px] flex-shrink-0 rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-2xl flex overflow-hidden p-5 sm:p-6"
+                className="group relative w-full md:w-[450px] lg:w-[500px] h-[220px] sm:h-[260px] md:h-[300px] flex-shrink-0 snap-start rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 flex overflow-hidden p-5 sm:p-6"
               >
                 <div className="flex flex-1 flex-col justify-between gap-4 pr-2 sm:pr-4 z-10 min-h-[190px]">
                   <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-tight text-black leading-tight break-words">

@@ -44,13 +44,18 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="relative min-h-[calc(100vh-80px)] w-full overflow-hidden">
+      <div className="relative min-h-[calc(100vh-44px)] w-full overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src="/prambanan-hero.png"
             alt="Prambanan Temple"
-            className="h-full w-full object-cover object-center"
+            className="hidden h-full w-full object-cover object-center md:block"
+          />
+          <img
+            src="/explore-bg-md.png"
+            alt="Prambanan Temple mobile background"
+            className="block h-full w-full object-cover object-center md:hidden"
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
@@ -77,4 +82,3 @@ export default function Home() {
     </main>
   );
 }
-

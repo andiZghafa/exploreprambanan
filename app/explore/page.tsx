@@ -98,7 +98,7 @@ export default function ExplorePage() {
         <Navbar />
       </div>
 
-      <section className="relative flex-1 w-full overflow-hidden px-4 py-8 md:px-12 md:py-12 text-black flex flex-col justify-center">
+      <section className="relative flex-1 w-full overflow-visible px-4 py-8 md:px-12 md:py-12 text-black flex flex-col justify-center">
         {/* Background Texture Image dengan pointer-events-none agar aman di mobile */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
@@ -119,7 +119,7 @@ export default function ExplorePage() {
           {/* Cards Container dengan Dukungan Scroll Wheel */}
           <div
             ref={scrollContainerRef}
-            className="flex flex-col md:flex-row gap-4 sm:gap-6 md:overflow-x-auto pb-8 pt-2 scrollbar-none snap-y md:snap-x snap-mandatory scroll-smooth"
+            className="flex flex-col md:flex-row gap-4 sm:gap-6 md:overflow-x-auto pb-8 pt-2 pr-6 md:pr-10 scrollbar-none snap-y md:snap-x snap-mandatory scroll-smooth"
           >
             {EXPLORE_CARDS.map((card) => {
               const cardTitle = t.nav?.[card.id] || card.id;
@@ -128,7 +128,7 @@ export default function ExplorePage() {
                 <Link
                   key={card.id}
                   href={card.href}
-                  className="group relative w-full md:w-[420px] h-[220px] sm:h-[260px] flex-shrink-0 snap-start rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-2xl flex overflow-hidden p-5 sm:p-6"
+                  className="group relative w-full md:w-[450px] lg:w-[500px] h-[220px] sm:h-[260px] md:h-[300px] flex-shrink-0 snap-start rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 flex overflow-hidden p-5 sm:p-6"
                 >
                   {/* Left Side: Title & Large Number */}
                   <div className="flex flex-1 flex-col justify-between pr-2 sm:pr-4 z-10">
@@ -152,6 +152,9 @@ export default function ExplorePage() {
                 </Link>
               );
             })}
+
+            {/* Invisible spacer so the final card can scroll fully into view */}
+            <div className="flex-shrink-0 w-6 md:w-10" aria-hidden="true" />
           </div>
         </div>
       </section>
