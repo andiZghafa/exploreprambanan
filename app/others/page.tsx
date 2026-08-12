@@ -48,13 +48,6 @@ const OTHERS_CARDS: ArtifactCard[] = [
     href: "/others/antefik-2",
     bgImage: "/images/others/antefik-2.png",
   },
-  {
-    id: "lingga-yoni",
-    number: "05",
-    title: "Lingga Yoni",
-    href: "/others/lingga-yoni",
-    bgImage: "/images/others/lingga-yoni.png",
-  },
 ];
 
 export default function OthersPage() {

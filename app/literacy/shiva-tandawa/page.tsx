@@ -26,7 +26,7 @@ export default function ShivaTandawaPage() {
           {/* Image */}
           <div className="mt-8 flex justify-center">
             <img
-              src="/images/literacy/Shiva-Tandawa.jpg"
+              src="/images/literacy/shiva-tandawa.jpg"
               alt="Shiva Tandawa"
               className="max-h-[80vh] w-auto max-w-full object-contain"
             />
