@@ -67,18 +67,25 @@ export default function ExplorePage() {
     if (!container) return;
 
     const handleWheelNative = (e: WheelEvent) => {
-      if (window.innerWidth >= 768) {
-        if (e.deltaY !== 0) {
-          e.preventDefault();
-          container.scrollLeft += e.deltaY * 2.5;
-        }
-      }
+      if (window.innerWidth < 768) return;
+      if (!container.contains(e.target as Node)) return;
+
+      const delta = e.deltaY || e.deltaX;
+      if (delta === 0) return;
+
+      e.preventDefault();
+      container.scrollBy({
+        left: delta * 3,
+        behavior: "smooth",
+      });
     };
 
     container.addEventListener("wheel", handleWheelNative, { passive: false });
+    window.addEventListener("wheel", handleWheelNative, { passive: false });
 
     return () => {
       container.removeEventListener("wheel", handleWheelNative);
+      window.removeEventListener("wheel", handleWheelNative);
     };
   }, []);
 
@@ -119,7 +126,7 @@ export default function ExplorePage() {
           {/* Cards Container dengan Dukungan Scroll Wheel */}
           <div
             ref={scrollContainerRef}
-            className="flex flex-col md:flex-row gap-4 sm:gap-6 md:overflow-x-auto pb-8 pt-2 pr-6 md:pr-10 scrollbar-none snap-y md:snap-x snap-mandatory scroll-smooth"
+            className="flex flex-col md:flex-row gap-4 sm:gap-6 overflow-x-auto pb-8 pt-2 pr-6 md:pr-20 xl:pr-24 scrollbar-none snap-y md:snap-x snap-mandatory scroll-smooth"
           >
             {EXPLORE_CARDS.map((card) => {
               const cardTitle = t.nav?.[card.id] || card.id;
@@ -154,7 +161,10 @@ export default function ExplorePage() {
             })}
 
             {/* Invisible spacer so the final card can scroll fully into view */}
-            <div className="flex-shrink-0 w-6 md:w-10" aria-hidden="true" />
+            <div
+              className="flex-shrink-0 w-12 md:w-20 lg:w-24"
+              aria-hidden="true"
+            />
           </div>
         </div>
       </section>
