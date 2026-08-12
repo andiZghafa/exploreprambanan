@@ -227,11 +227,11 @@ export default function ArcaPage() {
                 href={`/arca/${card.id}`}
                 className="group relative w-full md:w-[420px] h-[220px] sm:h-[260px] flex-shrink-0 rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-2xl flex overflow-hidden p-5 sm:p-6"
               >
-                <div className="flex flex-1 flex-col justify-between pr-2 sm:pr-4 z-10">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-black leading-tight">
+                <div className="flex flex-1 flex-col justify-between gap-4 pr-2 sm:pr-4 z-10 min-h-[190px]">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-tight text-black leading-tight break-words">
                     {card.title}
                   </h3>
-                  <span className="text-4xl sm:text-5xl md:text-6xl font-black text-black group-hover:scale-105 transition-transform inline-block">
+                  <span className="text-4xl sm:text-5xl md:text-5xl font-black text-black group-hover:scale-105 transition-transform inline-block">
                     {card.number}
                   </span>
                 </div>
@@ -251,4 +251,3 @@ export default function ArcaPage() {
     </main>
   );
 }
-
