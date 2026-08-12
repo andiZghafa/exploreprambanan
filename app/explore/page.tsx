@@ -102,7 +102,7 @@ export default function ExplorePage() {
         {/* Background Texture Image dengan pointer-events-none agar aman di mobile */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
-            src="/explore-bg.png"
+            src="/explore-bg5.png"
             alt="Explore background texture"
             className="h-full w-full object-cover object-center"
           />
@@ -112,7 +112,7 @@ export default function ExplorePage() {
           {/* Header */}
           <div className="mb-6 md:mb-10 text-center md:text-left">
             <h1 className="text-3xl sm:text-4xl font-extrabold md:text-6xl text-black drop-shadow-sm">
-              {t.nav?.others ? "Jelajahi Kompleks" : "Explore the Complex"}
+              {t.nav.exploreTemple}
             </h1>
           </div>
 
@@ -158,4 +158,3 @@ export default function ExplorePage() {
     </main>
   );
 }
-

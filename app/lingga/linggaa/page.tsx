@@ -39,7 +39,7 @@ export default function LinggaaPage() {
         {/* Background Texture Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/explore-bg2.png"
+            src="/explore-bg3.png"
             alt="Background texture"
             className="h-full w-full object-cover object-center"
           />
@@ -109,4 +109,3 @@ export default function LinggaaPage() {
     </main>
   );
 }
-

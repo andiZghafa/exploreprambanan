@@ -204,7 +204,7 @@ export default function ArcaPage() {
       <section className="relative flex-1 w-full px-4 py-8 md:px-12 md:py-12 text-black flex flex-col justify-center">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
-            src="/explore-bg2.png"
+            src="/explore-bg4.png"
             alt="Explore background texture"
             className="h-full w-full object-cover object-center"
           />

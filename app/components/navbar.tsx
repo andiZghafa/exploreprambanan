@@ -2,12 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useLanguage, LanguageCode } from "@/context/LanguageContext";
 
 type Language = {
   code: LanguageCode;
   label: string;
   flagUrl: string;
+};
+
+type SearchItem = {
+  label: string;
+  href: string;
+  category: string;
 };
 
 const LANGUAGES: Language[] = [
@@ -28,10 +35,58 @@ const LANGUAGES: Language[] = [
   },
 ];
 
+const SEARCH_ITEMS: SearchItem[] = [
+  { label: "Home", href: "/", category: "Main" },
+  { label: "Explore", href: "/explore", category: "Main" },
+  { label: "Arca", href: "/arca", category: "Collection" },
+  { label: "Agni", href: "/arca/agni", category: "Arca" },
+  { label: "Bodhisatwa", href: "/arca/bodhisatwa", category: "Arca" },
+  { label: "Buddha 1", href: "/arca/buddha-1", category: "Arca" },
+  { label: "Buddha 2", href: "/arca/buddha-2", category: "Arca" },
+  { label: "Daniswara", href: "/arca/daniswara", category: "Arca" },
+  { label: "Dewa Surya", href: "/arca/dewa-surya", category: "Arca" },
+  { label: "Dewa", href: "/arca/dewa", category: "Arca" },
+  { label: "Dewi Kaumari", href: "/arca/dewi-kaumari", category: "Arca" },
+  { label: "Dewi Tara", href: "/arca/dewi-tara", category: "Arca" },
+  { label: "Dhayani Buddha Ratnasambhaw", href: "/arca/dhyani-1", category: "Arca" },
+  { label: "Dhayani Budha Amitabh", href: "/arca/dhyani-2", category: "Arca" },
+  { label: "Durga Mahisasuramardhini", href: "/arca/durga", category: "Arca" },
+  { label: "Ganesha", href: "/arca/ganesha", category: "Arca" },
+  { label: "Kala", href: "/arca/kala", category: "Arca" },
+  { label: "Mahakala", href: "/arca/mahakala", category: "Arca" },
+  { label: "Motif", href: "/arca/motif", category: "Arca" },
+  { label: "Nandi", href: "/arca/nandi", category: "Arca" },
+  { label: "Relief Dewa", href: "/arca/relief-dewa", category: "Arca" },
+  { label: "Relief Dinding", href: "/arca/relief-dinding", category: "Arca" },
+  { label: "Resi", href: "/arca/resi", category: "Arca" },
+  { label: "Singa 1", href: "/arca/singa-1", category: "Arca" },
+  { label: "Singa 2", href: "/arca/singa-2", category: "Arca" },
+  { label: "Siwa", href: "/arca/siwa", category: "Arca" },
+  { label: "Lingga", href: "/lingga", category: "Collection" },
+  { label: "Prasasti", href: "/lingga/prasasti", category: "Lingga" },
+  { label: "Linggaa", href: "/lingga/linggaa", category: "Lingga" },
+  { label: "Literacy", href: "/literacy", category: "Collection" },
+  { label: "Shiva Tandawa", href: "/literacy/shiva-tandawa", category: "Literacy" },
+  { label: "Valley of the Gods", href: "/literacy/valley-gods", category: "Literacy" },
+  { label: "Siwagrha", href: "/literacy/siwagrha", category: "Literacy" },
+  { label: "Prambanan", href: "/literacy/prambanan", category: "Literacy" },
+  { label: "Sewu", href: "/literacy/sewu", category: "Literacy" },
+  { label: "Lumbung, Bubrah & Gana Temple", href: "/literacy/temples", category: "Literacy" },
+  { label: "Others", href: "/others", category: "Collection" },
+  { label: "Jaladwara", href: "/others/jaladwara", category: "Others" },
+  { label: "Landasan Garuda", href: "/others/landasan-garuda", category: "Others" },
+  { label: "Antefik 1", href: "/others/antefik-1", category: "Others" },
+  { label: "Antefik 2", href: "/others/antefik-2", category: "Others" },
+];
+
+const normalizeSearchValue = (value: string) =>
+  value.toLowerCase().replace(/[^a-z0-9]/g, "");
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(true);
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState("");
+  const router = useRouter();
 
   const { language, setLanguage, t } = useLanguage();
 
@@ -42,6 +97,44 @@ export default function Navbar() {
     { label: t.nav?.literacy ?? "Literacy", href: "/literacy" },
     { label: t.nav?.others ?? "Others", href: "/others" },
   ];
+
+  const searchResults = (searchValue: string) => {
+    const raw = searchValue.trim();
+
+    if (!raw) {
+      return [];
+    }
+
+    const normalized = normalizeSearchValue(raw);
+
+    return SEARCH_ITEMS.filter((item) => {
+      const text = `${item.label} ${item.category} ${item.href}`;
+      return normalizeSearchValue(text).includes(normalized);
+    }).slice(0, 6);
+  };
+
+  const mobileResults = searchResults(query);
+
+  const navigateToSearchResult = (href: string) => {
+    setQuery("");
+    setShowSearch(false);
+    setIsOpen(false);
+    router.push(href);
+  };
+
+  const handleSearchKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+    value: string,
+  ) => {
+    if (event.key !== "Enter") {
+      return;
+    }
+
+    const result = searchResults(value)[0];
+    if (result) {
+      navigateToSearchResult(result.href);
+    }
+  };
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -60,7 +153,6 @@ export default function Navbar() {
 
   return (
     <header className="relative z-50 w-full font-poppins">
-      {/* Top bar */}
       <div className="flex items-center justify-between px-6 py-5 md:px-12 bg-white/90 backdrop-blur-sm">
         <Link href="/" className="select-none">
           <img
@@ -83,7 +175,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Overlay menu */}
       <div
         className={`fixed inset-0 z-50 flex justify-end transition-opacity duration-300 ${
           isOpen
@@ -152,9 +243,34 @@ export default function Navbar() {
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => handleSearchKeyDown(e, query)}
                 placeholder={t.nav?.searchPlaceholder ?? "Search"}
                 className="w-full rounded-full border border-neutral-400 bg-white px-5 py-2.5 text-sm text-neutral-900 outline-none focus:border-neutral-900"
               />
+
+              {query.trim() && mobileResults.length > 0 && (
+                <div className="mt-3 rounded-2xl border border-neutral-300 bg-white p-2 shadow-lg">
+                  {mobileResults.map((item) => (
+                    <button
+                      key={item.href}
+                      type="button"
+                      onClick={() => navigateToSearchResult(item.href)}
+                      className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left transition-colors hover:bg-neutral-100"
+                    >
+                      <span className="text-sm font-medium text-neutral-800">{item.label}</span>
+                      <span className="text-[10px] uppercase tracking-[0.12em] text-neutral-500">
+                        {item.category}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {query.trim() && mobileResults.length === 0 && (
+                <div className="mt-3 rounded-2xl border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-500">
+                  No results found.
+                </div>
+              )}
             </div>
           )}
 
@@ -171,7 +287,6 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* 🏁 Flag Language Switcher */}
           <div className="mt-auto flex items-center gap-3 pt-10">
             {LANGUAGES.map((lang) => (
               <button

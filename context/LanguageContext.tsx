@@ -11,6 +11,7 @@ type Translations = {
     lingga: string;
     literacy: string;
     others: string;
+    exploreTemple: string;
     searchPlaceholder: string;
   };
   home: {
@@ -39,6 +40,7 @@ const dictionaries: Record<LanguageCode, Translations> = {
       lingga: "Lingga",
       literacy: "Literasi",
       others: "Lainnya",
+      exploreTemple: "Jelajahi Candi",
       searchPlaceholder: "Cari destinasi...",
     },
     home: {
@@ -67,6 +69,7 @@ const dictionaries: Record<LanguageCode, Translations> = {
       lingga: "Lingga",
       literacy: "Literacy",
       others: "Others",
+      exploreTemple: "Explore the Temple",
       searchPlaceholder: "Search destinations...",
     },
     home: {
@@ -95,6 +98,7 @@ const dictionaries: Record<LanguageCode, Translations> = {
       lingga: "林伽",
       literacy: "文献",
       others: "其他",
+      exploreTemple: "探索寺庙",
       searchPlaceholder: "搜索目的地...",
     },
     home: {
@@ -128,7 +132,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<LanguageCode>("id");
+  const [language, setLanguage] = useState<LanguageCode>("en");
 
   return (
     <LanguageContext.Provider

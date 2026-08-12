@@ -120,7 +120,7 @@ export default function LiteracyPage() {
         {/* Background Texture Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/explore-bg.png"
+            src="/explore-bg4.png"
             alt="Explore background texture"
             className="h-full w-full object-cover object-center"
           />
@@ -172,4 +172,3 @@ export default function LiteracyPage() {
     </main>
   );
 }
-
