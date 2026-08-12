@@ -13,9 +13,20 @@ export default function SewuPage() {
       const mobile = window.innerWidth < 768;
       setIsPortraitMode(mobile && portrait);
 
-      if (mobile && portrait && screen.orientation && screen.orientation.lock) {
+      const orientation = (
+        screen as Screen & {
+          orientation?: { lock?: (orientation: string) => Promise<void> };
+        }
+      ).orientation;
+
+      if (
+        mobile &&
+        portrait &&
+        orientation &&
+        typeof orientation.lock === "function"
+      ) {
         try {
-          screen.orientation.lock("landscape");
+          void orientation.lock("landscape");
         } catch {
           // Ignore lock errors; browsers often block this until a user gesture.
         }
