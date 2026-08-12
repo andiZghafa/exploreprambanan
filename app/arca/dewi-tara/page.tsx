@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
 
-const montserrat = Montserrat({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],
 });
@@ -20,7 +20,7 @@ export default function ArcaDewiTaraPage() {
 
   return (
     <main
-      className={`${montserrat.className} relative min-h-screen w-full bg-neutral-900 tracking-[-0.025em] flex flex-col`}
+      className={`${poppins.className} relative min-h-screen w-full bg-neutral-900 tracking-[-0.025em] flex flex-col`}
     >
       <div
         className={`fixed inset-0 z-40 bg-white transition-opacity duration-700 pointer-events-none ${isLoaded ? "opacity-0" : "opacity-100"}`}
@@ -78,3 +78,4 @@ export default function ArcaDewiTaraPage() {
     </main>
   );
 }
+

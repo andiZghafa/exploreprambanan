@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
 
-const montserrat = Montserrat({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],
 });
@@ -20,7 +20,7 @@ export default function AntefikPage() {
 
   return (
     <main
-      className={`${montserrat.className} relative min-h-screen w-full bg-neutral-900 tracking-[-0.025em] flex flex-col`}
+      className={`${poppins.className} relative min-h-screen w-full bg-neutral-900 tracking-[-0.025em] flex flex-col`}
     >
       {/* ⚪ White Fade-in Transition Overlay */}
       <div
@@ -102,3 +102,4 @@ export default function AntefikPage() {
     </main>
   );
 }
+

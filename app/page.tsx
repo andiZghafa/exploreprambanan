@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Navbar from "@/components/navbar";
 import { useLanguage } from "@/context/LanguageContext";
 
-const montserrat = Montserrat({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],
 });
@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <main
-      className={`${montserrat.className} min-h-screen w-full bg-neutral-900 tracking-[-0.025em]`}
+      className={`${poppins.className} min-h-screen w-full bg-neutral-900 tracking-[-0.025em]`}
     >
       {/* 
         Only show the page-transition overlay when fading out. 
@@ -77,3 +77,4 @@ export default function Home() {
     </main>
   );
 }
+

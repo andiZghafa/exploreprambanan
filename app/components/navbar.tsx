@@ -59,7 +59,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="relative z-50 w-full font-montserrat">
+    <header className="relative z-50 w-full font-poppins">
       {/* Top bar */}
       <div className="flex items-center justify-between px-6 py-5 md:px-12 bg-white/90 backdrop-blur-sm">
         <Link href="/" className="select-none">
@@ -199,3 +199,4 @@ export default function Navbar() {
     </header>
   );
 }
+

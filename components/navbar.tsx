@@ -107,7 +107,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="relative z-50 w-full font-montserrat">
+    <header className="relative z-50 w-full font-poppins">
       <div className="flex items-center justify-between gap-6 border-b border-neutral-200 bg-white px-6 py-4 md:px-12">
         {/* Logo */}
         <Link href="/" className="select-none shrink-0">
@@ -399,3 +399,4 @@ export default function Navbar() {
     </header>
   );
 }
+
