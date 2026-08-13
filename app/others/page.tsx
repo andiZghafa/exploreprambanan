@@ -13,7 +13,6 @@ const poppins = Poppins({
 
 type ArtifactCard = {
   id: string;
-  number: string;
   title: string;
   href: string;
   bgImage: string;
@@ -22,28 +21,24 @@ type ArtifactCard = {
 const OTHERS_CARDS: ArtifactCard[] = [
   {
     id: "jaladwara",
-    number: "01",
     title: "Jaladwara",
     href: "/others/jaladwara",
     bgImage: "/images/others/jaladwara.png",
   },
   {
     id: "landasan-garuda",
-    number: "02",
     title: "Landasan Garuda",
     href: "/others/landasan-garuda",
     bgImage: "/images/others/landasan-garuda.png",
   },
   {
     id: "antefik-1",
-    number: "03",
     title: "Antefik 1",
     href: "/others/antefik-1",
     bgImage: "/images/others/antefik-1.png",
   },
   {
     id: "antefik-2",
-    number: "04",
     title: "Antefik 2",
     href: "/others/antefik-2",
     bgImage: "/images/others/antefik-2.png",
@@ -101,12 +96,22 @@ export default function OthersPage() {
         <Navbar />
       </div>
 
-      <section className="relative flex-1 w-full px-4 py-8 md:px-12 md:py-12 text-black flex flex-col justify-center">
-        {/* Background Texture Image dengan pointer-events-none agar tidak menutupi sentuhan */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Content Container */}
+      <section className="relative flex-1 w-full overflow-hidden px-6 py-8 md:px-16 md:py-16 text-black flex flex-col justify-center md:bg-transparent">
+        {/* Background Texture Image */}
+        <div
+          className="absolute inset-0 z-0 overflow-hidden md:hidden"
+          style={{
+            backgroundImage: "url('/explore-bg-mb.png')",
+            backgroundRepeat: "repeat-y",
+            backgroundSize: "100% auto",
+            backgroundPosition: "center top",
+          }}
+        />
+        <div className="absolute inset-0 z-0 hidden overflow-hidden md:block">
           <img
-            src="/explore-bg4.png"
-            alt="Explore background texture"
+            src="/explore-bg6.png"
+            alt="Background texture"
             className="h-full w-full object-cover object-center"
           />
         </div>
@@ -119,6 +124,17 @@ export default function OthersPage() {
             </h1>
           </div>
 
+          {/* Subtle hint for desktop horizontal browsing */}
+          <div className="mb-3 hidden items-center justify-end gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-700/80 md:flex">
+            <span aria-hidden="true" className="text-base leading-none">
+              ←
+            </span>
+            <span>Scroll</span>
+            <span aria-hidden="true" className="text-base leading-none">
+              →
+            </span>
+          </div>
+
           {/* Cards Container */}
           <div
             ref={scrollContainerRef}
@@ -128,26 +144,20 @@ export default function OthersPage() {
               <Link
                 key={card.id}
                 href={card.href}
-                className="group relative w-full md:w-[450px] lg:w-[500px] h-[220px] sm:h-[260px] md:h-[300px] flex-shrink-0 snap-start rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 flex overflow-hidden p-5 sm:p-6"
+                className="group relative w-full md:w-[430px] lg:w-[460px] h-[220px] sm:h-[260px] md:h-[300px] flex-shrink-0 snap-start rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 flex overflow-hidden p-4 sm:p-5"
               >
-                {/* Left Side: Title & Large Number */}
-                <div className="flex flex-1 flex-col justify-between pr-2 sm:pr-4 z-10">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-black leading-tight">
+                <div className="relative z-10 flex h-full w-full flex-col items-center justify-between">
+                  <h3 className="text-center text-xl sm:text-2xl md:text-3xl font-normal tracking-tight text-black leading-tight capitalize">
                     {card.title}
                   </h3>
 
-                  <span className="text-4xl sm:text-5xl md:text-6xl font-black text-black group-hover:scale-105 transition-transform inline-block">
-                    {card.number}
-                  </span>
-                </div>
-
-                {/* Right Side: Image Container */}
-                <div className="relative w-1/2 h-full flex items-center justify-center flex-shrink-0">
-                  <img
-                    src={card.bgImage}
-                    alt={card.title}
-                    className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
-                  />
+                  <div className="flex h-[72%] w-full items-end justify-center">
+                    <img
+                      src={card.bgImage}
+                      alt={card.title}
+                      className="h-full w-full max-w-[210px] object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
               </Link>
             ))}

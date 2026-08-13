@@ -68,7 +68,7 @@ export default function SewuPage() {
           <div className="mx-auto max-w-6xl">
             <Link
               href="/literacy"
-              className="mb-8 inline-block text-sm font-semibold text-black hover:underline"
+              className="mb-8 inline-block text-sm font-normal text-black hover:underline"
             >
               ← Back to Literacy
             </Link>

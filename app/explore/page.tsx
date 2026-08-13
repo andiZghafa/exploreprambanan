@@ -13,7 +13,6 @@ const poppins = Poppins({
 
 type ExploreCard = {
   id: "arca" | "lingga" | "literacy" | "others";
-  number: string;
   href: string;
   bgImage: string;
 };
@@ -21,25 +20,21 @@ type ExploreCard = {
 const EXPLORE_CARDS: ExploreCard[] = [
   {
     id: "arca",
-    number: "01",
     href: "/arca",
     bgImage: "/arca-card.png",
   },
   {
     id: "lingga",
-    number: "02",
     href: "/lingga",
     bgImage: "/lingga-card.png",
   },
   {
     id: "literacy",
-    number: "03",
     href: "/literacy",
     bgImage: "/literacy-card.png",
   },
   {
     id: "others",
-    number: "04",
     href: "/others",
     bgImage: "/others-card.png",
   },
@@ -91,7 +86,7 @@ export default function ExplorePage() {
 
   return (
     <main
-      className={`${poppins.className} relative min-h-screen w-full bg-neutral-900 tracking-[-0.025em] flex flex-col`}
+      className={`${poppins.className} relative min-h-screen w-full bg-[url('/explore-bg-mb.png')] bg-repeat bg-cover bg-center tracking-[-0.025em] flex flex-col md:bg-neutral-900 md:bg-none`}
     >
       {/* ⚪ White Fade-in Transition Overlay */}
       <div
@@ -105,12 +100,22 @@ export default function ExplorePage() {
         <Navbar />
       </div>
 
-      <section className="relative flex-1 w-full overflow-visible px-4 py-8 md:px-12 md:py-12 text-black flex flex-col justify-center">
-        {/* Background Texture Image dengan pointer-events-none agar aman di mobile */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Content Container */}
+      <section className="relative flex-1 w-full overflow-hidden px-6 py-8 md:px-16 md:py-16 text-black flex flex-col justify-center md:bg-transparent">
+        {/* Background Texture Image */}
+        <div
+          className="absolute inset-0 z-0 overflow-hidden md:hidden"
+          style={{
+            backgroundImage: "url('/explore-bg-mb.png')",
+            backgroundRepeat: "repeat-y",
+            backgroundSize: "100% auto",
+            backgroundPosition: "center top",
+          }}
+        />
+        <div className="absolute inset-0 z-0 hidden overflow-hidden md:block">
           <img
-            src="/explore-bg5.png"
-            alt="Explore background texture"
+            src="/explore-bg6.png"
+            alt="Background texture"
             className="h-full w-full object-cover object-center"
           />
         </div>
@@ -121,6 +126,17 @@ export default function ExplorePage() {
             <h1 className="text-3xl sm:text-4xl font-extrabold md:text-6xl text-black drop-shadow-sm">
               {t.nav.exploreTemple}
             </h1>
+          </div>
+
+          {/* Subtle hint for desktop horizontal browsing */}
+          <div className="mb-3 hidden items-center justify-end gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-700/80 md:flex">
+            <span aria-hidden="true" className="text-base leading-none">
+              ←
+            </span>
+            <span>Scroll</span>
+            <span aria-hidden="true" className="text-base leading-none">
+              →
+            </span>
           </div>
 
           {/* Cards Container dengan Dukungan Scroll Wheel */}
@@ -135,26 +151,20 @@ export default function ExplorePage() {
                 <Link
                   key={card.id}
                   href={card.href}
-                  className="group relative w-full md:w-[450px] lg:w-[500px] h-[220px] sm:h-[260px] md:h-[300px] flex-shrink-0 snap-start rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 flex overflow-hidden p-5 sm:p-6"
+                  className="group relative w-full md:w-[430px] lg:w-[460px] h-[220px] sm:h-[260px] md:h-[300px] flex-shrink-0 snap-start rounded-[24px] sm:rounded-[32px] bg-white border border-neutral-200 transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 flex overflow-hidden p-4 sm:p-5"
                 >
-                  {/* Left Side: Title & Large Number */}
-                  <div className="flex flex-1 flex-col justify-between pr-2 sm:pr-4 z-10">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-black leading-tight capitalize">
+                  <div className="relative z-10 flex h-full w-full flex-col items-center justify-between">
+                    <h3 className="text-center text-xl sm:text-2xl md:text-3xl font-normal tracking-tight text-black leading-tight capitalize">
                       {cardTitle}
                     </h3>
 
-                    <span className="text-4xl sm:text-5xl md:text-6xl font-black text-black group-hover:scale-105 transition-transform inline-block">
-                      {card.number}
-                    </span>
-                  </div>
-
-                  {/* Right Side: Image Container */}
-                  <div className="relative w-1/2 h-full flex items-center justify-center flex-shrink-0">
-                    <img
-                      src={card.bgImage}
-                      alt={cardTitle}
-                      className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
-                    />
+                    <div className="flex h-[72%] w-full items-end justify-center">
+                      <img
+                        src={card.bgImage}
+                        alt={cardTitle}
+                        className="h-full w-full max-w-[210px] object-contain transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
                 </Link>
               );

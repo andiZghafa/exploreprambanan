@@ -37,12 +37,15 @@ export default function Antefik2Page() {
       {/* Content Container */}
       <section className="relative flex-1 w-full overflow-hidden px-6 py-8 md:px-16 md:py-16 text-black flex flex-col justify-center">
         {/* Background Texture Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/explore-bg3.png"
-            alt="Background texture"
-            className="h-full w-full object-cover object-center"
-          />
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <picture className="block h-full w-full">
+            <source media="(max-width: 767px)" srcSet="/explore-bg3-mb.png" />
+            <img
+              src="/explore-bg3.png"
+              alt="Background texture"
+              className="block h-full w-full object-cover object-center"
+            />
+          </picture>
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-7xl">
@@ -50,7 +53,7 @@ export default function Antefik2Page() {
           <div className="mb-6 md:mb-8">
             <Link
               href="/others"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-black/70 hover:text-black transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-normal text-black/70 hover:text-black transition-colors"
             >
               ← Back to Others
             </Link>
@@ -82,7 +85,7 @@ export default function Antefik2Page() {
               </h1>
 
               {/* Description Blocks */}
-              <div className="space-y-4 text-base sm:text-lg text-neutral-800 font-medium leading-relaxed">
+              <div className="space-y-4 text-base sm:text-lg text-neutral-800 font-normal leading-relaxed">
                 <p>
                   Antefixes are generally decorative elements of temple
                   structures, positioned on the roof. This particular antefix is
