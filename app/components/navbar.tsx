@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useLanguage, LanguageCode } from "@/context/LanguageContext";
 
 type Language = {
@@ -34,6 +34,14 @@ const LANGUAGES: Language[] = [
     flagUrl: "https://flagcdn.com/w40/cn.png",
   },
 ];
+
+const CATEGORY_LABELS: Record<string, string> = {
+  arca: "Arca",
+  lingga: "Lingga",
+  literacy: "Literacy",
+  others: "Others",
+  explore: "Explore",
+};
 
 const SEARCH_ITEMS: SearchItem[] = [
   { label: "Home", href: "/", category: "Main" },
@@ -110,6 +118,11 @@ export default function Navbar() {
 
   const { language, setLanguage, t } = useLanguage();
 
+  const pathname = usePathname() || "/";
+  const segments = pathname.split("/").filter(Boolean);
+  const categoryKey = segments[0] ?? "";
+  const categoryLabel = CATEGORY_LABELS[categoryKey];
+
   const NAV_LINKS = [
     { label: t.nav?.home ?? "Home", href: "/" },
     { label: t.nav?.arca ?? "Arca", href: "/arca" },
@@ -181,6 +194,16 @@ export default function Navbar() {
             className="h-5 w-auto md:h-6"
           />
         </Link>
+        {categoryLabel && (
+          <div className="hidden md:flex items-center ml-4">
+            <span
+              style={{ backgroundColor: "#d8b06a" }}
+              className="inline-flex items-center justify-center px-3 py-1 text-white text-sm font-semibold rounded-sm"
+            >
+              {categoryLabel}
+            </span>
+          </div>
+        )}
 
         <button
           type="button"

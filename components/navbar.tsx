@@ -227,46 +227,48 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
-            <div
-              key={link.href}
-              className="relative"
-              onMouseEnter={() => link.children && setOpenDropdown(link.href)}
-              onMouseLeave={() => link.children && setOpenDropdown(null)}
-            >
-              <Link
-                href={link.href}
-                className={`flex items-center gap-1 whitespace-nowrap text-[15px] font-medium transition-colors ${
-                  pathname
-                    ? link.href === "/"
-                      ? pathname === "/"
-                        ? "text-neutral-400"
-                        : "text-neutral-800 hover:text-neutral-500"
-                      : pathname.startsWith(link.href)
-                        ? "text-neutral-400"
-                        : "text-neutral-800 hover:text-neutral-500"
-                    : "text-neutral-800 hover:text-neutral-500"
-                }`}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname
+              ? link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href)
+              : false;
+
+            return (
+              <div
+                key={link.href}
+                className="relative"
+                onMouseEnter={() => link.children && setOpenDropdown(link.href)}
+                onMouseLeave={() => link.children && setOpenDropdown(null)}
               >
-                {link.label}
-                {link.children && (
-                  <svg
-                    className={`h-4 w-4 text-neutral-500 transition-transform ${
-                      openDropdown === link.href ? "rotate-180" : ""
-                    }`}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                )}
-              </Link>
-            </div>
-          ))}
+                <Link
+                  href={link.href}
+                  className={`flex items-center gap-1 whitespace-nowrap text-[15px] font-medium transition-colors ${
+                    isActive
+                      ? "bg-[#d8b06a] text-white px-3 py-1 rounded-sm"
+                      : "text-neutral-800 hover:text-neutral-500"
+                  }`}
+                >
+                  {link.label}
+                  {link.children && (
+                    <svg
+                      className={`h-4 w-4 text-neutral-500 transition-transform ${
+                        openDropdown === link.href ? "rotate-180" : ""
+                      }`}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  )}
+                </Link>
+              </div>
+            );
+          })}
         </nav>
 
         <div className="hidden shrink-0 items-center gap-4 md:flex">
@@ -513,26 +515,28 @@ export default function Navbar() {
           )}
 
           <nav className="mt-8 flex flex-col gap-3">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={`text-lg font-semibold leading-tight transition-colors ${
-                  pathname
-                    ? link.href === "/"
-                      ? pathname === "/"
-                        ? "text-neutral-400"
-                        : "text-neutral-800 hover:text-neutral-500"
-                      : pathname.startsWith(link.href)
-                        ? "text-neutral-400"
-                        : "text-neutral-800 hover:text-neutral-500"
-                    : "text-neutral-800 hover:text-neutral-500"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname
+                ? link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href)
+                : false;
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-lg font-semibold leading-tight transition-colors ${
+                    isActive
+                      ? "bg-[#d8b06a] text-white px-3 py-2 rounded-sm"
+                      : "text-neutral-800 hover:text-neutral-500"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="mt-auto flex items-center gap-3 pt-10">
