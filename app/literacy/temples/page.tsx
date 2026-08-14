@@ -1,63 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+// no hooks needed
 import Navbar from "@/components/navbar";
 
 export default function TemplesPage() {
-  const [isPortraitMode, setIsPortraitMode] = useState(false);
-
-  useEffect(() => {
-    const updateOrientation = () => {
-      const portrait = window.innerHeight >= window.innerWidth;
-      const mobile = window.innerWidth < 768;
-      setIsPortraitMode(mobile && portrait);
-
-      const orientation = (
-        screen as Screen & {
-          orientation?: { lock?: (orientation: string) => Promise<void> };
-        }
-      ).orientation;
-
-      if (
-        mobile &&
-        portrait &&
-        orientation &&
-        typeof orientation.lock === "function"
-      ) {
-        try {
-          void orientation.lock("landscape");
-        } catch {
-          // Ignore lock errors; browsers often block this until a user gesture.
-        }
-      }
-    };
-
-    updateOrientation();
-    window.addEventListener("resize", updateOrientation);
-    window.addEventListener("orientationchange", updateOrientation);
-
-    return () => {
-      window.removeEventListener("resize", updateOrientation);
-      window.removeEventListener("orientationchange", updateOrientation);
-    };
-  }, []);
+  // Removed mandatory landscape prompt and orientation lock
 
   return (
     <>
-      {isPortraitMode && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 px-6 text-center text-white backdrop-blur-sm">
-          <div className="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-2xl">
-            <div className="mb-2 text-3xl">📱↔️</div>
-            <p className="text-lg font-semibold">
-              Rotate your phone to landscape
-            </p>
-            <p className="mt-2 text-sm text-white/80">
-              This poster is best viewed in landscape mode.
-            </p>
-          </div>
-        </div>
-      )}
+      {/* Landscape requirement removed; content displays responsively */}
 
       <main className="min-h-screen bg-neutral-900">
         <div className="sticky top-0 z-50 w-full">
@@ -83,6 +35,32 @@ export default function TemplesPage() {
                 alt="Temples"
                 className="block h-auto w-full max-w-[min(100%,720px)] max-h-[55vh] object-contain shadow-lg sm:max-h-[80vh]"
               />
+            </div>
+            <div className="mt-8 prose mx-auto max-w-3xl text-center text-black">
+              <h3 className="text-2xl font-semibold">Lumbung Temple</h3>
+              <blockquote className="mt-2 mb-6 border-l-4 border-gray-200 pl-4 italic text-black/80 text-left">
+                Lumbung Temple consists of one main temple and sixteen ancillary
+                temples. It is located directly north of Bubrah Temple and
+                shares the same Buddhist religious background. Based on its
+                architectural features, this temple is estimated to have been
+                built around the 9th century AD.
+              </blockquote>
+
+              <h3 className="mt-6 text-2xl font-semibold">Bubrah Temple</h3>
+              <blockquote className="mt-2 mb-6 border-l-4 border-gray-200 pl-4 italic text-black/80 text-left">
+                Bubrah Temple, also of Buddhist origin, is part of the mandala
+                of Sewu Temple. It is situated approximately 300 meters south of
+                Sewu Temple and, judging by its architectural style, was
+                constructed around the 9th century AD along with Sewu.
+              </blockquote>
+
+              <h3 className="mt-6 text-2xl font-semibold">Gana Temple</h3>
+              <blockquote className="mt-2 mb-6 border-l-4 border-gray-200 pl-4 italic text-black/80 text-left">
+                Additionally, there is the Gana Temple, also known as Asu
+                Temple, located about 300 meters east of Sewu Temple. This
+                temple is also part of the Sewu mandala, but what remains now is
+                only the foot of the temple.
+              </blockquote>
             </div>
           </div>
         </section>

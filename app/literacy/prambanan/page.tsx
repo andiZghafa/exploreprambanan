@@ -1,63 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+// no hooks needed
 import Navbar from "@/components/navbar";
 
 export default function PrambananPage() {
-  const [isPortraitMode, setIsPortraitMode] = useState(false);
-
-  useEffect(() => {
-    const updateOrientation = () => {
-      const portrait = window.innerHeight >= window.innerWidth;
-      const mobile = window.innerWidth < 768;
-      setIsPortraitMode(mobile && portrait);
-
-      const orientation = (
-        screen as Screen & {
-          orientation?: { lock?: (orientation: string) => Promise<void> };
-        }
-      ).orientation;
-
-      if (
-        mobile &&
-        portrait &&
-        orientation &&
-        typeof orientation.lock === "function"
-      ) {
-        try {
-          void orientation.lock("landscape");
-        } catch {
-          // Ignore lock errors; browsers often block this until a user gesture.
-        }
-      }
-    };
-
-    updateOrientation();
-    window.addEventListener("resize", updateOrientation);
-    window.addEventListener("orientationchange", updateOrientation);
-
-    return () => {
-      window.removeEventListener("resize", updateOrientation);
-      window.removeEventListener("orientationchange", updateOrientation);
-    };
-  }, []);
+  // Removed mandatory landscape prompt and orientation lock
 
   return (
     <>
-      {isPortraitMode && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 px-6 text-center text-white backdrop-blur-sm">
-          <div className="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-2xl">
-            <div className="mb-2 text-3xl">📱↔️</div>
-            <p className="text-lg font-semibold">
-              Rotate your phone to landscape
-            </p>
-            <p className="mt-2 text-sm text-white/80">
-              This poster is best viewed in landscape mode.
-            </p>
-          </div>
-        </div>
-      )}
+      {/* Landscape requirement removed; content displays responsively */}
 
       <main className="min-h-screen bg-neutral-900">
         <div className="sticky top-0 z-50 w-full">
@@ -83,6 +35,22 @@ export default function PrambananPage() {
                 alt="Prambanan"
                 className="block h-auto w-full max-w-[min(100%,720px)] max-h-[55vh] object-contain shadow-lg sm:max-h-[80vh]"
               />
+            </div>
+            <div className="mt-8 prose mx-auto max-w-3xl text-center text-black">
+              <p className="mb-6">
+                Prambanan Temple (Siwagrha) retains its original structure,
+                which was built in the 9th century AD. The temple complex
+                showcases the grandeur of Shaivite cultural art and stands as a
+                monumental achievement of classical-period architecture in
+                Indonesia. In the 9th century, Prambanan was one of the finest
+                examples of Hindu bas-relief (high-relief) art.
+              </p>
+
+              <p className="mb-6">
+                These Hindu temples are adorned with reliefs depicting the
+                Indonesian version of the Ramayana epic, representing one of the
+                greatest masterpieces of ancient stone carving techniques.
+              </p>
             </div>
           </div>
         </section>
