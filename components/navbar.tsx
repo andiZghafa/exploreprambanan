@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useLanguage, LanguageCode } from "@/context/LanguageContext";
 
 type NavChild = {
@@ -126,6 +126,7 @@ export default function Navbar() {
   const langRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
 
   const { language, setLanguage, t } = useLanguage();
 
@@ -235,7 +236,17 @@ export default function Navbar() {
             >
               <Link
                 href={link.href}
-                className="flex items-center gap-1 whitespace-nowrap text-[15px] font-medium text-neutral-800 transition-colors hover:text-neutral-500"
+                className={`flex items-center gap-1 whitespace-nowrap text-[15px] font-medium transition-colors ${
+                  pathname
+                    ? link.href === "/"
+                      ? pathname === "/"
+                        ? "text-neutral-400"
+                        : "text-neutral-800 hover:text-neutral-500"
+                      : pathname.startsWith(link.href)
+                        ? "text-neutral-400"
+                        : "text-neutral-800 hover:text-neutral-500"
+                    : "text-neutral-800 hover:text-neutral-500"
+                }`}
               >
                 {link.label}
                 {link.children && (
@@ -507,7 +518,17 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-lg font-semibold leading-tight text-neutral-800 transition-colors hover:text-neutral-500"
+                className={`text-lg font-semibold leading-tight transition-colors ${
+                  pathname
+                    ? link.href === "/"
+                      ? pathname === "/"
+                        ? "text-neutral-400"
+                        : "text-neutral-800 hover:text-neutral-500"
+                      : pathname.startsWith(link.href)
+                        ? "text-neutral-400"
+                        : "text-neutral-800 hover:text-neutral-500"
+                    : "text-neutral-800 hover:text-neutral-500"
+                }`}
               >
                 {link.label}
               </Link>
