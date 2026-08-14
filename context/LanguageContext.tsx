@@ -44,9 +44,9 @@ const dictionaries: Record<LanguageCode, Translations> = {
       searchPlaceholder: "Cari destinasi...",
     },
     home: {
-      discoverPrambanan: "Jelajahi Candi Prambanan",
+      discoverPrambanan: "Discover Museum Prambanan",
       subtitle:
-        "Prambanan adalah rumah bagi simbol-simbol keagamaan Hindu utama yang dibangun pada abad ke-9.",
+        "Explore the stories, artifacts, and cultural heritage that bring Prambanan’s history to life.",
       exploreBtn: "Bawa saya ke sana",
     },
     others: {
@@ -73,9 +73,9 @@ const dictionaries: Record<LanguageCode, Translations> = {
       searchPlaceholder: "Search destinations...",
     },
     home: {
-      discoverPrambanan: "Discover Prambanan Temple",
+      discoverPrambanan: "Discover Museum Prambanan",
       subtitle:
-        "Prambanan is home to major Hindu religious symbols that were built in the 9th century.",
+        "Explore the stories, artifacts, and cultural heritage that bring Prambanan’s history to life.",
       exploreBtn: "Take me there",
     },
     others: {
@@ -102,8 +102,9 @@ const dictionaries: Record<LanguageCode, Translations> = {
       searchPlaceholder: "搜索目的地...",
     },
     home: {
-      discoverPrambanan: "探索普兰巴南寺庙",
-      subtitle: "普兰巴南是9世纪建造的主要印度教宗教象征的所在地。",
+      discoverPrambanan: "Discover Museum Prambanan",
+      subtitle:
+        "Explore the stories, artifacts, and cultural heritage that bring Prambanan’s history to life.",
       exploreBtn: "带我去那里",
     },
     others: {
