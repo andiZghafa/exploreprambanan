@@ -11,9 +11,11 @@ export default function CategoryRouteTransition() {
   const prevRef = useRef<string | null>(null);
   const [visible, setVisible] = useState(false);
   const [opaque, setOpaque] = useState(false);
+  const navigationInProgressRef = useRef(false);
 
   // Helper to run the fade-to-white then navigate
   const navigateWithFade = (targetPath: string) => {
+    navigationInProgressRef.current = true;
     setVisible(true);
     // fade to white
     requestAnimationFrame(() => setOpaque(true));
@@ -25,43 +27,41 @@ export default function CategoryRouteTransition() {
       setTimeout(() => {
         setOpaque(false);
         // hide overlay after fade-out
-        setTimeout(() => setVisible(false), 300);
+        setTimeout(() => {
+          setVisible(false);
+          navigationInProgressRef.current = false;
+        }, 300);
       }, 60);
     }, 260);
   };
 
-  // Intercept clicks on <a> to handle category-to-category navigation
+  // Intercept clicks on <a> to handle internal navigations and run pre-navigation fade
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       const el = (e.target as Element)?.closest?.(
         "a",
       ) as HTMLAnchorElement | null;
       if (!el) return;
-      const href = el.getAttribute("href") || el.href;
+
+      // Ignore special links
+      if (el.target && el.target !== "_self") return;
+      if (el.hasAttribute("download")) return;
+
+      const href = el.getAttribute("href");
       if (!href) return;
 
       try {
         const url = new URL(href, window.location.origin);
-        const path = url.pathname;
-        const isTargetCategory = CATEGORY_PATHS.includes(path);
-        const isFromCategory = CATEGORY_PATHS.includes(
-          window.location.pathname,
-        );
-        const isFromHome = window.location.pathname === "/";
+        // only handle same-origin navigations
+        if (url.origin !== window.location.origin) return;
 
-        // Trigger fade when navigating between categories, from a category to home,
-        // or from home to a category
-        const isNavigatingCategoryToHome = path === "/" && isFromCategory;
-        const isNavigatingHomeToCategory = isFromHome && isTargetCategory;
+        const fullPath = `${url.pathname}${url.search}${url.hash}`;
+        const currentFull = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (fullPath === currentFull) return;
 
-        if (
-          isNavigatingCategoryToHome ||
-          isNavigatingHomeToCategory ||
-          (isTargetCategory && isFromCategory)
-        ) {
-          e.preventDefault();
-          navigateWithFade(path);
-        }
+        // Intercept internal navigation and run fade before navigating
+        e.preventDefault();
+        navigateWithFade(fullPath);
       } catch (err) {
         // ignore invalid URLs
       }
@@ -75,23 +75,14 @@ export default function CategoryRouteTransition() {
   // Also handle non-click navigations (back/forward or programmatic).
   useEffect(() => {
     const prev = prevRef.current;
-    if (prev) {
-      const wasCategory = CATEGORY_PATHS.includes(prev);
-      const isCategoryNow = CATEGORY_PATHS.includes(pathname);
-
-      // category -> category OR category -> home OR home -> category
-      if (
-        (wasCategory && (isCategoryNow || pathname === "/")) ||
-        (prev === "/" && isCategoryNow)
-      ) {
-        // Show a quick white flash then fade to reveal new page
-        setVisible(true);
-        setOpaque(true);
-        setTimeout(() => {
-          setOpaque(false);
-          setTimeout(() => setVisible(false), 300);
-        }, 120);
-      }
+    if (prev && prev !== pathname && !navigationInProgressRef.current) {
+      // Show a quick white flash then fade to reveal new page (post-navigation)
+      setVisible(true);
+      setOpaque(true);
+      setTimeout(() => {
+        setOpaque(false);
+        setTimeout(() => setVisible(false), 300);
+      }, 120);
     }
     prevRef.current = pathname;
   }, [pathname]);
