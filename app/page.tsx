@@ -62,7 +62,7 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative z-10 flex min-h-[calc(100vh-80px)] flex-col items-center justify-center px-6 text-center">
-          <h1 className="max-w-4xl text-5xl font-extrabold leading-tight text-white drop-shadow-md md:text-7xl">
+          <h1 className="max-w-1xl text-4xl font-extrabold leading-tight text-white drop-shadow-md md:text-6xl">
             {t.home.discoverPrambanan}
           </h1>
 
